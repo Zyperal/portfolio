@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflection — Tristen Ly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link href="Ruina_Chesed_Icon.webp" rel="icon" type="image/x-icon" />
+
+<style>
+  /* ── Reflection page layout ── */
+  .reflection-layout {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* Key takeaway highlight block */
+  .highlight-block {
+    background: #1a1a0a;
+    border-left: 2px solid var(--active);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+
+  .highlight-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--active);
+    margin-bottom: 8px;
+  }
+
+  .highlight-text {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* Q&A entry cards */
+  .entry {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .entry:hover { border-color: #3a3a3a; }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+
+  .entry-question {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+
+  .entry-tag {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 0.5px solid var(--border);
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .entry-answer {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* Sidebar stats grid */
+  .stats-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .stat-mini {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  .stat-mini-num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--active);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-mini-lbl {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Skills chip cloud */
+  .skills-cloud {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .skills-cloud-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .skill-chip {
+    display: inline-block;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 0.5px solid var(--border);
+    background: #1a1a1a;
+    color: var(--muted);
+    margin: 2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .reflection-layout { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="header-img" src="https://arknights.wiki.gg/images/thumb/AT_Zone_1.png/1920px-AT_Zone_1.png?bd4779" alt="Header">
+  <div class="header-bar">
+    <p class="site-title">Tristen Ly – Graphic Design & Photography</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="illustration.html">Illustration</a>
+      <a href="branding.html">Branding</a>
+      <a href="print.html">Print</a>
+      <a href="poster.html">Poster</a>
+      <a href="process.html">Process</a>
+      <a href="photography.html">Photography Samples</a>
+      <a href="resume.html">Resume</a>
+      <a href="reflection.html" class="active">Reflection</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-cat">Reflection</div>
+    <h1 class="page-title">Class Reflection</h1>
+    <p class="page-desc">A look back at the graphic design program — what was learned, what was built, and where it's all headed.</p>
+  </div>
+
+  <div class="reflection-layout">
+
+    <!-- Left: reflection content -->
+    <div>
+
+      <!--
+        KEY TAKEAWAY — put your best one-liner here.
+        Could be your own words, or the quote from the
+        Project Moon / Arknights character you chose.
+      -->
+      <div class="highlight-block">
+        <div class="highlight-label">// key takeaway</div>
+        <p class="highlight-text">
+          "No one will be the helmsman of my luge byt myself!!! No one shall live my life in my stead!!!"
+        </p>
+      </div>
+
+      <!--
+        Q&A ENTRIES — fill in your actual answers.
+        Add or remove entries as needed.
+        Each entry-tag label is just for visual sorting —
+        change them to whatever fits your answer.
+      -->
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-question">What did you learn this year?</div>
+          <span class="entry-tag">Growth</span>
+        </div>
+        <p class="entry-answer">
+          The Pen Tool really clicked with me easily but to be deathly honest, most of the assignments in this class were fundamental to building and rounding out my skillset as an aspiring graphic artist.
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-question">Which project are you most proud of and why?</div>
+          <span class="entry-tag">Favorite</span>
+        </div>
+        <p class="entry-answer">
+          Movie poster. For the sheer fact that I got to make a movie poster off of one of my heists from Payday 2: the Golden Grin Casino
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-question">Reflect on Your Strengths</div>
+          <span class="entry-tag">Introspective</span>
+        </div>
+        <p class="entry-answer">
+          My Strengths for the most part were the attention to datails and the collective culmination of ideas that are moshed with every project I do.
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-question">What was the hardest part of the program?</div>
+          <span class="entry-tag">Challenge</span>
+        </div>
+        <p class="entry-answer">
+          Time management and HEAVY PROCRASINATION, due to how funky my brain is when deciding what to prioritize, I tend to so work and bounce around to other things and when the deadline comes around I just rush the job and botch it in the process.
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-question">Least Fravorite Project?</div>
+          <span class="entry-tag">Old Man Diatribe</span>
+        </div>
+        <p class="entry-answer">
+          Self-Portrait. didn't like the idea at 1st and in my personal opinion, the most botched and sloppy of my works shown.
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-question">What project would i redo if i could?</div>
+          <span class="entry-tag">Retrospective</span>
+        </div>
+        <p class="entry-answer">
+          Lanndscape, had i had a bit more time and energy i would've been close to creating Big Sur solely using the Pen Tool and the Shapes in Illustrator.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Right: sidebar -->
+    <div>
+
+      <!-- Stats -->
+      <div class="stats-mini">
+        <div class="stat-mini">
+          <div class="stat-mini-num">1</div>
+          <div class="stat-mini-lbl">Year</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-num">13</div>
+          <div class="stat-mini-lbl">Projects</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-num">20</div>
+          <div class="stat-mini-lbl">Photos</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-num">∞</div>
+          <div class="stat-mini-lbl">Ideas</div>
+        </div>
+      </div>
+
+      <!-- Skills gained chip cloud -->
+      <div class="skills-cloud">
+        <div class="skills-cloud-title">Skills gained</div>
+        <span class="skill-chip">Pen tool</span>
+        <span class="skill-chip">Color theory</span>
+        <span class="skill-chip">Typography</span>
+        <span class="skill-chip">Brand identity</span>
+        <span class="skill-chip">Print production</span>
+        <span class="skill-chip">CMYK</span>
+        <span class="skill-chip">Bleed &amp; crop marks</span>
+        <span class="skill-chip">Sublimation</span>
+        <span class="skill-chip">Photography</span>
+        <span class="skill-chip">Layout design</span>
+        <span class="skill-chip">HTML &amp; CSS</span>
+        <span class="skill-chip">Style guides</span>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>

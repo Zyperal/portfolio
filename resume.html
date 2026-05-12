@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Tristen Ly</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="Ruina_Chesed_Icon.webp" rel="icon" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+  /* ── Resume page layout ── */
+  .resume-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px;
+    align-items: start;
+  }
+ 
+  /* PDF preview card */
+  .resume-preview {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+ 
+  /* Embed the PDF directly in the page */
+  .resume-embed {
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+    display: block;
+    border: none;
+  }
+ 
+  .resume-actions {
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    border-top: 0.5px solid var(--border);
+  }
+ 
+  .btn-download {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 4px;
+    background: var(--active);
+    color: var(--bg);
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+ 
+  .btn-download:hover { opacity: 0.88; }
+ 
+  .btn-open {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 4px;
+    border: 0.5px solid var(--text);
+    color: var(--text);
+    background: transparent;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.15s, color 0.15s;
+  }
+ 
+  .btn-open:hover { border-color: var(--active); color: var(--active); }
+ 
+  /* Sidebar cards */
+  .resume-sidebar { display: flex; flex-direction: column; gap: 12px; }
+ 
+  .info-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+ 
+  .info-card-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+ 
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 0.5px solid #1e1e1e;
+    font-size: 12px;
+    color: var(--text);
+  }
+ 
+  .info-row:last-child { border-bottom: none; }
+ 
+  .info-val {
+    font-size: 10px;
+    color: var(--active);
+    letter-spacing: 0.5px;
+  }
+ 
+  /* Responsive */
+  @media (max-width: 768px) {
+    .resume-layout { grid-template-columns: 1fr; }
+  }
+</style>
+<script>
+  * ── Strip panel swap ── */
+  function swapPanel(heroId, thumb) {
+    document.getElementById(heroId).src = thumb.src;
+    thumb.closest('.strip-thumbs')
+         .querySelectorAll('img')
+         .forEach(t => t.classList.remove('thumb-active'));
+    thumb.classList.add('thumb-active');
+  }
+</script>
+  </head>
+  <header>
+  <img class="header-img" src="https://arknights.wiki.gg/images/thumb/AT_Zone_1.png/1920px-AT_Zone_1.png?bd4779" alt="Header">
+  <div class="header-bar">
+    <p class="site-title">Tristen Ly – Graphic Design & Photography</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="illustration.html">Illustration</a>
+      <a href="branding.html">Branding</a>
+      <a href="print.html">Print</a>
+      <a href="poster.html">Poster</a>
+      <a href="process.html">Process</a>
+      <a href="photosamples.html">Photography Samples</a>
+      <a href="resume.html">Resume</a>
+      <a href="reflection.html">Reflection</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+  <body>
+    
+<main>
+  <div class="page-header">
+    <div class="page-cat">Document</div>
+    <h1 class="page-title">Resume</h1>
+    <p class="page-desc">Current resume — view online or download as a PDF.</p>
+  </div>
+ 
+  <div class="resume-layout">
+ 
+    <!-- Left: PDF preview -->
+    <div class="resume-preview">
+      <!--
+        OPTION A — embed the PDF directly (shows inline, scrollable):
+        <embed class="resume-embed" src="resume.pdf" type="application/pdf">
+ 
+        OPTION B — show it as an image if PDF embed doesn't work on the host:
+        <img class="resume-embed" src="images/resume-preview.jpg" alt="Resume">
+ 
+        Use Option A first. If the PDF shows a blank white box,
+        export the resume as a JPG and use Option B instead.
+      -->
+      <embed class="resume-embed" src="Resume.pdf" type="application/pdf">
+ 
+      <div class="resume-actions">
+        <!-- download attribute triggers a file download instead of opening in browser -->
+        <a href="resume.pdf" download="TristenLy-Resume.pdf" class="btn-download">
+          ⬇ Download PDF
+        </a>
+        <!-- target="_blank" opens in a new tab at full size -->
+        <a href="resume.pdf" target="_blank" class="btn-open">
+          ↗ View full size
+        </a>
+      </div>
+    </div>
+ 
+    <!-- Right: sidebar info -->
+    <div class="resume-sidebar">
+ 
+      <div class="info-card">
+        <div class="info-card-title">Software</div>
+        <div class="info-row"><span>Adobe Illustrator</span><span class="info-val">Advanced</span></div>
+        <div class="info-row"><span>Adobe Photoshop</span><span class="info-val">Advanced</span></div>
+        <div class="info-row"><span>Adobe InDesign</span><span class="info-val">Intermediate</span></div>
+        <div class="info-row"><span>HTML &amp; CSS</span><span class="info-val">Intermediate</span></div>
+      </div>
+ 
+      <div class="info-card">
+        <div class="info-card-title">Education</div>
+        <div class="info-row"><span>Perry High School</span><span class="info-val">2026</span></div>
+        <div class="info-row"><span>CTE Graphic Design</span></div>
+        <div class="info-row"><span>Photography</span></div>
+        <div class="info-row"><span>Chandler USD</span><span class="info-val">Gilbert, AZ</span></div>
+      </div>
+ 
+      <div class="info-card">
+        <div class="info-card-title">Interests</div>
+        <div class="info-row"><span>Game development</span></div>
+        <div class="info-row"><span>Photography</span></div>
+        <div class="info-row"><span>IT &amp; tech</span></div>
+        <div class="info-row"><span>Content creation</span></div>
+      </div>
+ 
+    </div>
+ 
+  </div>
+</main>
+  </body>
+</html>

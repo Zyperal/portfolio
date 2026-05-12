@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Illustration — Tristen Ly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link href="Ruina_Chesed_Icon.webp" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="style.css">
+<style>
+.strip-thumbs img {
+  aspect-ratio: auto;
+  height: 60px;         /* fixed height instead of square */
+  width: auto;
+  flex: none;           /* stop them stretching to fill */
+  object-fit: cover;
+}
+
+  #spread-hero {
+  aspect-ratio: auto;   /* removes the forced 16/7 ratio */
+  height: auto;
+  object-fit: contain;  /* shows full page without cropping */
+  background: #111;     /* fills the letterbox area */
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <img class="header-img" src="https://arknights.wiki.gg/images/thumb/AT_Zone_1.png/1920px-AT_Zone_1.png?bd4779" alt="Header">
+  <div class="header-bar">
+    <p class="site-title">Tristen Ly – Graphic Design & Photography</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="illustration.html">Illustration</a>
+      <a href="branding.html">Branding</a>
+      <a href="print.html">Print</a>
+      <a href="poster.html">Poster</a>
+      <a href="process.html">Process</a>
+      <a href="photosamples.html">Photography Samples</a>
+      <a href="resume.html">Resume</a>
+      <a href="reflection.html">Reflection</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-cat">Category</div>
+    <h1 class="page-title">Illustration</h1>
+    <p class="page-desc">Vector and digital illustration — portraits, landscapes, and type distortion built in Adobe Illustrator.</p>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="card">
+      <img class="card-thumb" src="project images/LY-Tristen_PenToolPortrait.jpg" alt="Pen Tool Portrait">
+      <div class="card-body">
+        <div class="card-title">Pen Tool Portrait</div>
+        <div class="card-meta">Vector · Adobe Illustrator</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-thumb" src="project images/landscape proj.png" alt="Bixby Bridge Landscape">
+      <div class="card-body">
+        <div class="card-title">Bixby Bridge Landscape</div>
+        <div class="card-meta">Landscape illustration · Illustrator</div>
+      </div>
+    </div>
+
+   <!-- Envelope Distort -->
+    <div class="card">
+  <img class="strip-hero" id="ed-hero" src="project images/Ly_Tristen_Words1-01.jpg" alt="outer trifold covers">
+  <div class="strip-thumbs">
+    <img src="project images/Ly_Tristen_Words1-01.jpg"   onclick="swapPanel('ed-hero',this)" class="thumb-active">
+    <img src="project images/Ly_Tristen_Words1-02.jpg" onclick="swapPanel('ed-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Words with Form</div>
+    <div class="card-meta">Envelope Distort · Adobe Illustrator</div>
+  </div>
+</div>
+
+  </div>
+</main>
+<script>
+  /* ── Strip panel swap ── */
+  function swapPanel(heroId, thumb) {
+    document.getElementById(heroId).src = thumb.src;
+    thumb.closest('.strip-thumbs')
+         .querySelectorAll('img')
+         .forEach(t => t.classList.remove('thumb-active'));
+    thumb.classList.add('thumb-active');
+  }
+</script>
+
+</body>
+</html>

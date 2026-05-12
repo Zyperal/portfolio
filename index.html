@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tristen Ly – Graphic Design & Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link href="Ruina_Chesed_Icon.webp" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /* ── Homepage-only styles ── */
+
+  .hero {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(20,20,20,0.97) 30%,
+      rgba(20,20,20,0.15)
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 48px 52px;
+    max-width: 600px;
+  }
+
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .hero-mono {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--active);
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  .hero-btns { display: flex; gap: 12px; }
+
+  .btn-primary {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 4px;
+    background: var(--active);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 4px;
+    border: 0.5px solid var(--text);
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .btn-ghost:hover { border-color: var(--active); color: var(--active); }
+
+  /* Sections */
+  .home-section { margin-bottom: 56px; }
+
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 2px;
+  }
+
+  .section-link {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--active);
+    text-decoration: none;
+  }
+
+  .section-link:hover { opacity: 0.75; }
+
+  /* Featured grid */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 14px;
+  }
+
+  .feat-main             { grid-row: span 2; }
+  .feat-main .card-thumb { aspect-ratio: 3 / 4; }
+
+  .card-thumb-wrap { position: relative; }
+
+  .cat-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  .badge-illustration { background: #193680;  color: #85B7EB; }
+  .badge-branding     { background: #1a1a0a;  color: #B4E030; border: 0.5px solid #B4E030; }
+  .badge-print        { background: #2a1212;  color: #E8003C; border: 0.5px solid #C41230; }
+  .badge-poster       { background: #1C1C1C;  color: #EDE9E0; border: 0.5px solid #3a3a3a; }
+  .badge-photography  { background: #0a1a0f;  color: #6dcf8a; border: 0.5px solid #3a6a3a; }
+
+  /* About strip */
+  .about-strip {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .strip-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #252525;
+    border: 0.5px solid var(--border);
+    display: block;
+  }
+
+  .strip-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .strip-role {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--active);
+    margin-bottom: 6px;
+  }
+
+  .strip-bio {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  /* Category tiles */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+
+  .cat-tile {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 14px 12px;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .cat-tile:hover { border-color: var(--rail); transform: translateY(-2px); }
+
+  .ct-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .ct-count {
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .ct-bar    { height: 2px; border-radius: 1px; }
+  .bar-illustration { background: #193680; }
+  .bar-branding     { background: var(--active); }
+  .bar-print        { background: var(--accent); }
+  .bar-poster       { background: var(--text); }
+  .bar-process      { background: var(--muted); }
+  .bar-photography  { background: #3a6a3a; }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--active);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero-name      { font-size: 44px; }
+    .featured-grid  { grid-template-columns: 1fr 1fr; }
+    .feat-main      { grid-row: span 1; }
+    .feat-main .card-thumb { aspect-ratio: 4/3; }
+    .cat-grid       { grid-template-columns: repeat(3,1fr); }
+    .about-strip    { grid-template-columns: 72px 1fr; }
+    .about-strip .btn-ghost { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .hero           { height: 320px; }
+    .hero-content   { padding: 0 24px 36px; }
+    .hero-name      { font-size: 34px; }
+    .featured-grid  { grid-template-columns: 1fr; }
+    .cat-grid       { grid-template-columns: repeat(2,1fr); }
+    .stats-grid     { grid-template-columns: repeat(2,1fr); }
+    .about-strip    { grid-template-columns: 1fr; }
+    .strip-avatar   { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<header>
+  <div class="header-bar" style="padding-top:0">
+    <p class="site-title" style="padding-top:14px">Tristen Ly – Graphic Design & Photography</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="illustration.html">Illustration</a>
+      <a href="branding.html">Branding</a>
+      <a href="print.html">Print</a>
+      <a href="poster.html">Poster</a>
+      <a href="process.html">Process</a>
+      <a href="photosamples.html">Photography Samples</a>
+      <a href="resume.html">Resume</a>
+      <a href="reflection.html">Reflection</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <!-- Replace with your actual panoramic image -->
+  <img class="hero-bg" src="https://arknights.wiki.gg/images/thumb/AT_Zone_1.png/1920px-AT_Zone_1.png?bd4779" alt="Urban Torii header art"> 
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Graphic Design & Photography</div>
+    <h1 class="hero-name">TRISTEN<span>_</span>LY</h1>
+    <p class="hero-sub">Perry High School · Gilbert, Arizona</p>
+    <p class="hero-mono">// 300 UNFINISHED IDEAS & A SET DESTINATION</p>
+    <div class="hero-btns">
+      <a href="gallery.html" class="btn-primary">View Gallery</a>
+      <a href="about.html"   class="btn-ghost">About Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ MAIN ════ -->
+<main>
+
+  <!-- Featured Work -->
+  <div class="home-section">
+    <div class="section-head">
+      <span class="section-label">FEATURED WORK</span>
+      <a href="gallery.html" class="section-link">View all →</a>
+    </div>
+    <div class="featured-grid">
+
+      <div class="card feat-main">
+        <div class="card-thumb-wrap">
+          <img class="card-thumb" src="project images/Ly-MOVIE.png" alt="Casino Crashers">
+          <span class="cat-badge badge-poster">Poster</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Casino Crashers</div>
+          <div class="card-meta">Movie poster · Adobe Photoshop</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb-wrap">
+          <img class="card-thumb" src="project images/LY-Tristen_PenToolPortrait.jpg" alt="Pen Tool Portrait">
+          <span class="cat-badge badge-illustration">Illustration</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Pen Tool Portrait</div>
+          <div class="card-meta">Vector · Adobe Illustrator</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb-wrap">
+          <img class="card-thumb" src="project images/LY_BrandingStyleGuide_page-0001.jpg" alt="Adventure Bound Books">
+          <span class="cat-badge badge-branding">Branding</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Adventure Bound Books</div>
+          <div class="card-meta">Brand identity · Style guide</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb-wrap">
+          <img class="card-thumb" src="project images/Ly-Tristen-Lunarcard-01.jpg" alt="Lunar New Year Card">
+          <span class="cat-badge badge-print">Print</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Lunar New Year Card</div>
+          <div class="card-meta">Greeting card · CMYK print</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb-wrap">
+          <img class="card-thumb" src="photography showcase/BWP1_LY-2705.jpg" alt="Photography">
+          <span class="cat-badge badge-photography">Photography</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Photography Samples</div>
+          <div class="card-meta">20 selected photographs</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- About Strip -->
+  <div class="home-section">
+    <div class="section-head">
+      <span class="section-label">THE DESIGNER</span>
+      <a href="about.html" class="section-link">Full bio →</a>
+    </div>
+    <div class="about-strip">
+      <img class="strip-avatar" src="photography showcase/901478e9-2adf-4c9e-9e62-6b1aca2c51f0.jpg" alt="Tristen Ly">
+      <div>
+        <div class="strip-name">Tristen Ly</div>
+        <div class="strip-role">Graphic Design & Photography · CTE Program</div>
+        <p class="strip-bio">Born in Hue, Vietnam — based in Gilbert, Arizona. Hyperactive creative with 300 unfinished ideas and a set destination. Interests span identity design, print production, photography, and game development.</p>
+      </div>
+      <a href="about.html" class="btn-ghost">Learn more</a>
+    </div>
+  </div>
+
+  <!-- Browse by Category -->
+  <div class="home-section">
+    <div class="section-head">
+      <span class="section-label">BROWSE BY CATEGORY</span>
+    </div>
+    <div class="cat-grid">
+      <a href="illustration.html" class="cat-tile">
+        <div class="ct-label">Illustration</div>
+        <div class="ct-count">3 projects</div>
+        <div class="ct-bar bar-illustration"></div>
+      </a>
+      <a href="branding.html" class="cat-tile">
+        <div class="ct-label">Branding</div>
+        <div class="ct-count">5 projects</div>
+        <div class="ct-bar bar-branding"></div>
+      </a>
+      <a href="print.html" class="cat-tile">
+        <div class="ct-label">Print</div>
+        <div class="ct-count">3 projects</div>
+        <div class="ct-bar bar-print"></div>
+      </a>
+      <a href="poster.html" class="cat-tile">
+        <div class="ct-label">Poster</div>
+        <div class="ct-count">1 project</div>
+        <div class="ct-bar bar-poster"></div>
+      </a>
+      <a href="process.html" class="cat-tile">
+        <div class="ct-label">Process</div>
+        <div class="ct-count">1 project</div>
+        <div class="ct-bar bar-process"></div>
+      </a>
+      <a href="photosamples.html" class="cat-tile">
+        <div class="ct-label">Photography</div>
+        <div class="ct-count">20 photos</div>
+        <div class="ct-bar bar-photography"></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="home-section">
+    <div class="section-head">
+      <span class="section-label">BY THE NUMBERS</span>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">13</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">20</div>
+        <div class="stat-label">Photos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">300</div>
+        <div class="stat-label">Unfinished ideas</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Tristen Ly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link href="Ruina_Chesed_Icon.webp" rel="icon" type="image/x-icon" />
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #141414;
+    --bg-card:  #1C1C1C;
+    --border:   #2a2a2a;
+    --text:     #EDE9E0;
+    --muted:    #6B6B68;
+    --active:   #B4E030;
+    --accent:   #C41230;
+    --rail:     #193680;
+    --font-display: 'Chakra Petch', sans-serif;
+    --font-body:    'Space Grotesk', Arial, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 20px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  header { border-bottom: 0.5px solid var(--border); }
+
+  .header-img {
+    width: 100%;
+    display: block;
+    <img src="https://arknights.wiki.gg/images/thumb/AT_Zone_1.png/1920px-AT_Zone_1.png?bd4779" alt="" />
+    height: 180px;
+    background: #1a1a1a;
+    object-fit: cover;
+  }
+
+  .header-bar {
+    padding: 14px 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .site-title {
+    font-family: var(--font-display);
+    font-style: bold;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* ── Nav ── */
+  nav { display: flex; gap: 0; }
+
+  nav a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  nav a:hover  { color: var(--text); }
+  nav a.active { color: var(--active); border-bottom-color: var(--active); }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+  }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .filter-btn {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 4px;
+    border: 0.5px solid var(--border);
+    background: var(--bg-card);
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .filter-btn:hover { color: var(--text); border-color: #3a3a3a; }
+
+  .filter-btn.active {
+    background: var(--bg);
+    border-color: var(--active);
+    color: var(--active);
+  }
+
+  /* ── Gallery grid ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  /* ── Project card ── */
+  .card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    border-color: var(--rail);
+    transform: translateY(-3px);
+  }
+
+  /* Cards hidden by filter */
+  .card.hidden {
+    display: none;
+  }
+
+  .card-thumb {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: unset;
+    display: block;
+    object-fit: cover;
+    background: #252525;
+    position: relative;
+  }
+
+  /* Category badge on thumbnail */
+  .card-thumb-wrap { position: relative; aspect-ratio: 4 / 3;}
+
+  .cat-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  .badge-illustration { background: #193680; color: #85B7EB; }
+  .badge-branding     { background: #1a1a0a; color: #B4E030; border: 0.5px solid #B4E030; }
+  .badge-print        { background: #2a1212; color: #E8003C; border: 0.5px solid #C41230; }
+  .badge-poster       { background: #1C1C1C; color: #EDE9E0; border: 0.5px solid #3a3a3a; }
+  .badge-process      { background: #1a0a0a; color: #C41230; border: 0.5px solid #C41230; }
+
+  .card-body { padding: 12px 14px 14px; flex: 1;}
+
+  .card-title {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .card-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ── Lightbox overlay ── */
+  .lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.lightbox-overlay.open { display: flex; }
+
+.lightbox-box {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  max-width: 860px;
+  width: 100%;
+  min-height: 400px;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.lb-image-wrap {
+  flex: 1;
+  min-width: 0;
+  background: #111;
+  display: flex;         /* Add flex to center image */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lb-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;    /* Keep contain for no cropping */
+  display: block;
+}
+
+  /* Placeholder when no real image */
+  .lb-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #3a3a3a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .lb-info {
+    width: 280px;
+    min-width: 280px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 0.5px solid var(--border);
+  }
+
+  .lb-category {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .lb-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .lb-tool {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .lb-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .lb-close {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--active);
+    border: 0.5px solid var(--active);
+    padding: 7px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-align: center;
+  }
+
+  .lb-close:hover { background: rgba(180, 224, 48, 0.08); }
+  
+  .strip-thumbs img {
+  aspect-ratio: auto;
+  height: 60px;         /* fixed height instead of square */
+  width: auto;
+  flex: none;           /* stop them stretching to fill */
+  object-fit: cover;
+}
+
+  #spread-hero {
+  aspect-ratio: auto;   /* removes the forced 16/7 ratio */
+  height: auto;
+  object-fit: contain;  /* shows full page without cropping */
+  background: #111;     /* fills the letterbox area */
+}
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     HEADER — copy this block
+     into every page
+════════════════════════════ -->
+<header>
+
+    <img class="header-img" src="https://arknights.wiki.gg/images/thumb/AT_Zone_1.png/1920px-AT_Zone_1.png?bd4779" alt="Header">
+
+  <div class="header-bar">
+    <p class="site-title">Tristen Ly - Graphic Design & Photography</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="illustration.html">Illustration</a>
+      <a href="branding.html">Branding</a>
+      <a href="print.html">Print</a>
+      <a href="poster.html">Poster</a>
+      <a href="process.html">Process</a>
+      <a href="photosamples.html">Photography Samples</a>
+      <a href="resume.html">Resume</a>
+      <a href="reflection.html">Reflection</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+
+</header>
+
+
+<!-- ════════════════════════════
+     GALLERY PAGE CONTENT
+════════════════════════════ -->
+<main>
+
+  <!-- Filter buttons -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="illustration">Illustration</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="print">Print</button>
+    <button class="filter-btn" data-filter="poster">Poster</button>
+    <button class="filter-btn" data-filter="process">Process</button>
+  </div>
+
+  <!-- ── Cards ──────────────────────────────────────────────
+       For each project:
+       1. data-cat  = category slug (must match a filter button)
+       2. data-title, data-tool, data-desc = lightbox content
+       3. Replace <div class="lb-placeholder"> with a real <img>
+  ─────────────────────────────────────────────────────────── -->
+  <div class="gallery-grid" id="galleryGrid">
+
+    <!-- Pen Tool Portrait -->
+    <div class="card"
+         data-cat="illustration"
+         data-title="Pen Tool Portrait"
+         data-tool="Vector · Adobe Illustrator"
+         data-desc="Vector portrait built entirely with the pen tool in Adobe Illustrator. Each shape was manually traced and filled to recreate realistic facial shading using flat color planes.">
+      <div class="card-thumb-wrap">
+        <img class="card-thumb" src="project images/LY-Tristen_PenToolPortrait.jpg" alt="Pen Tool Portrait">
+        <span class="cat-badge badge-illustration">Illustration</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Pen Tool Portrait</div>
+        <div class="card-meta">Vector · Adobe Illustrator</div>
+      </div>
+    </div>
+
+    <!-- Bixby Bridge -->
+    <div class="card"
+         data-cat="illustration"
+         data-title="Bixby Bridge Landscape"
+         data-tool="Landscape illustration · Illustrator"
+         data-desc="Flat vector recreation of the Bixby Creek Bridge in Big Sur, California. Built from a reference photograph using layered shapes to capture the coastal cliffs, ocean, and treeline.">
+        <div class="card-thumb-wrap">
+          <img class="card-thumb" src="project images/landscape proj.png" alt="Bixby Bridge">
+          <span class="cat-badge badge-illustration">Illustration</span>
+        </div>
+      <div class="card-body">
+        <div class="card-title">Bixby Bridge Landscape</div>
+        <div class="card-meta">Landscape illustration · Illustrator</div>
+      </div>
+    </div>
+
+    <!-- Envelope Distort -->
+    <div class="card">
+  <img class="strip-hero" id="ed-hero" src="project images/Ly_Tristen_Words1-01.jpg" alt="outer trifold covers">
+  <div class="strip-thumbs">
+    <img src="project images/Ly_Tristen_Words1-01.jpg"   onclick="swapPanel('ed-hero',this)" class="thumb-active">
+    <img src="project images/Ly_Tristen_Words1-02.jpg" onclick="swapPanel('ed-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Words with Form</div>
+    <div class="card-meta">Envelope Distort · Adobe Illustrator</div>
+  </div>
+</div>
+
+    <!-- Adventure Bound Books -->
+    <div class="card"
+         data-cat="branding"
+         data-title="Adventure Bound Books"
+         data-tool="Brand identity · Style guide"
+         data-desc="Full brand identity system for a local specialty bookstore. Covers logo mark, sub-mark, color palette (warm browns and amber), typography (Cinzel Decorative + Garamond), and merchandise applications.">
+      <div class="card-thumb-wrap">
+        <img class="card-thumb" src="project images/LY_BrandingStyleGuide_page-0001.jpg" alt="Adventure Bound Books">
+        <span class="cat-badge badge-branding">Branding</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Adventure Bound Books</div>
+        <div class="card-meta">Brand identity · Style guide</div>
+      </div>
+    </div>
+
+    <!-- Name Tag -->
+    <div class="card"
+         data-cat="branding"
+         data-title="Name Tag / Identity"
+         data-tool="Identity system"
+         data-desc="Personal identity name tag designed for the graphic design program at Perry High School. Incorporates a cyberpunk cityscape with layered type and badge geometry.">
+      <div class="card-thumb-wrap">
+        <img class="card-thumb" src="project images/Ly_T_Nametag(FINAL).png" alt="Name Tag">
+        <span class="cat-badge badge-branding">Branding</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Name Tag / Identity</div>
+        <div class="card-meta">Identity system</div>
+      </div>
+    </div>
+
+    <!-- Perry Trifold -->
+    <div class="card">
+  <img class="strip-hero" id="tf-hero" src="project images/LY_Tristen_PerryTrifold_page-0002.jpg" alt="outer trifold covers">
+  <div class="strip-thumbs">
+    <img src="project images/LY_Tristen_PerryTrifold_page-0002.jpg"   onclick="swapPanel('tf-hero',this)" class="thumb-active">
+    <img src="project images/LY_Tristen_PerryTrifold_page-0001.jpg" onclick="swapPanel('tf-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Perry High School Trifold</div>
+    <div class="card-meta">Informational Trifold · Adobe InDesign</div>
+  </div>
+</div>
+
+    <!-- Lunar New Year Card -->
+    <div class="card">
+  <img class="strip-hero" id="gc-hero" src="project images/Ly-Tristen-Lunarcard-01.jpg" alt="Card Font and Back">
+  <div class="strip-thumbs">
+    <img src="project images/Ly-Tristen-Lunarcard-01.jpg"   onclick="swapPanel('gc-hero',this)" class="thumb-active">
+    <img src="project images/Ly-Tristen-Lunarcard-02.jpg" onclick="swapPanel('gc-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Lunar New Year Card</div>
+    <div class="card-meta">Holiday Card · Adobe Illustrator</div>
+  </div>
+</div>
+
+    <!-- Sublimation Mug -->
+    <div class="card">
+  <img class="strip-hero" id="sm-hero" src="project images/20260505_081411_web.jpg" alt="outer trifold covers">
+  <div class="strip-thumbs">
+    <img src="project images/20260505_081411_web.jpg"   onclick="swapPanel('sm-hero',this)" class="thumb-active">
+    <img src="project images/20260505_081415_web.jpg" onclick="swapPanel('sm-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Sublimation Mug</div>
+    <div class="card-meta">Real Merch · Adobe Illustrator</div>
+  </div>
+</div>
+
+    <!-- Casino Crashers -->
+    <div class="card"
+         data-cat="poster"
+         data-title="Casino Crashers"
+         data-tool="Movie poster · Photoshop"
+         data-desc="Movie poster for a fictional heist film. Overhead bird's-eye view of a craps table with bold typographic hierarchy, money bags, and a release date treatment inspired by real studio poster conventions.">
+      <div class="card-thumb-wrap">
+        <img class="card-thumb" src="project images/Ly-MOVIE.png" alt="Casino Crashers">
+        <span class="cat-badge badge-poster">Poster</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Casino Crashers</div>
+        <div class="card-meta">Movie poster · Photoshop</div>
+      </div>
+    </div>
+
+    <!-- CMYK Color Wheel -->
+    <div class="card"
+         data-cat="process"
+         data-title="CMYK Color Wheel"
+         data-tool="Color theory · Foundational study"
+         data-desc="Educational diagram mapping primary, secondary, and tertiary relationships across the CMYK subtractive and RGB additive color models. Built using a custom dark grid aesthetic with neon color fills.">
+      <div class="card-thumb-wrap">
+       <img class="card-thumb" src="project images/LyTristen-Color_Wheel-01.jpg" alt="CMYK Color Wheel">
+        <span class="cat-badge badge-process">Process</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">CMYK Color Wheel</div>
+        <div class="card-meta">Color theory · Foundational study</div>
+      </div>
+    </div>
+    
+    <!-- All About Me -->
+<div class="card">
+  <img class="strip-hero" id="spread-hero" src="project images/LY_TRISTEN_ALLABOUTME_1.jpg" alt="Trifold front">
+  <div class="strip-thumbs">
+    <img src="project images/LY_TRISTEN_ALLABOUTME_1.jpg"   onclick="swapPanel('spread-hero',this)" class="thumb-active">
+    <img src="project images/LY_TRISTEN_ALLABOUTME_2.jpg" onclick="swapPanel('spread-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">All About Me</div>
+    <div class="card-meta">Magazine Spread · 2 panels</div>
+  </div>
+</div>
+    
+    <!-- Logo Spofs -->
+    <div class="card"
+         data-cat="print"
+         data-title="logospoof"
+         data-tool="logospoof"
+         data-desc="Spoofs and Redesign of a logo">
+      <div class="card-thumb-wrap">
+        <img class="card-thumb" src="project images/LY_logo_parody_redesign.png" alt="jokes">
+        <span class="cat-badge badge-print">Print</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Logo Parody</div>
+        <div class="card-meta">Print · Adobe Illustrator</div>
+      </div>
+    </div>
+    
+  </div>
+</main>
+
+
+<!-- ════════════════════════════
+     LIGHTBOX OVERLAY
+════════════════════════════ -->
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-box">
+
+    <div class="lb-image-wrap">
+      <!-- Real image is injected here by JS -->
+      <div class="lb-placeholder" id="lbPlaceholder">[ image ]</div>
+      <img id="lbImg" src="" alt="" style="display:none">
+    </div>
+
+    <div class="lb-info">
+      <div class="lb-category" id="lbCat"></div>
+      <div class="lb-title"    id="lbTitle"></div>
+      <div class="lb-tool"     id="lbTool"></div>
+      <div class="lb-desc"     id="lbDesc"></div>
+      <div class="lb-close"    id="lbClose">✕ Close</div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+
+  /* ── Filter ── */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards      = document.querySelectorAll('.card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.cat === filter;
+        card.classList.toggle('hidden', !match);
+      });
+    });
+  });
+
+
+  /* ── Lightbox ── */
+  const overlay  = document.getElementById('lightbox');
+  const lbCat    = document.getElementById('lbCat');
+  const lbTitle  = document.getElementById('lbTitle');
+  const lbTool   = document.getElementById('lbTool');
+  const lbDesc   = document.getElementById('lbDesc');
+  const lbImg    = document.getElementById('lbImg');
+  const lbPlaceholder = document.getElementById('lbPlaceholder');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      lbCat.textContent   = card.dataset.cat.charAt(0).toUpperCase() + card.dataset.cat.slice(1);
+      lbTitle.textContent = card.dataset.title;
+      lbTool.textContent  = card.dataset.tool;
+      lbDesc.textContent  = card.dataset.desc;
+
+      /* If card has a real thumbnail image, mirror it in the lightbox */
+      const thumb = card.querySelector('img.card-thumb');
+      if (thumb) {
+        lbImg.src           = thumb.src;
+        lbImg.alt           = card.dataset.title;
+        lbImg.style.display = 'block';
+        lbPlaceholder.style.display = 'none';
+      } else {
+        lbImg.style.display         = 'none';
+        lbPlaceholder.style.display = 'flex';
+      }
+
+      overlay.classList.add('open');
+    });
+  });
+
+  /* Close on button click or clicking outside the box */
+  document.getElementById('lbClose').addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  function close() { overlay.classList.remove('open'); }
+
+  /* ── Strip panel swap ── */
+  function swapPanel(heroId, thumb) {
+    document.getElementById(heroId).src = thumb.src;
+    thumb.closest('.strip-thumbs')
+         .querySelectorAll('img')
+         .forEach(t => t.classList.remove('thumb-active'));
+    thumb.classList.add('thumb-active');
+  }
+  
+</script>
+
+</body>
+</html>

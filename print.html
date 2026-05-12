@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print — Tristen Ly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link href="Ruina_Chesed_Icon.webp" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="style.css">
+<style>
+.strip-thumbs img {
+  aspect-ratio: auto;
+  height: 60px;         /* fixed height instead of square */
+  width: auto;
+  flex: none;           /* stop them stretching to fill */
+  object-fit: cover;
+}
+
+  #spread-hero {
+  aspect-ratio: auto;   /* removes the forced 16/7 ratio */
+  height: auto;
+  object-fit: contain;  /* shows full page without cropping */
+  background: #111;     /* fills the letterbox area */
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <img class="header-img" src="https://arknights.wiki.gg/images/thumb/AT_Zone_1.png/1920px-AT_Zone_1.png?bd4779" alt="Header">
+  <div class="header-bar">
+    <p class="site-title">Tristen Ly – Graphic Design & Photography</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="illustration.html">Illustration</a>
+      <a href="branding.html">Branding</a>
+      <a href="print.html">Print</a>
+      <a href="poster.html">Poster</a>
+      <a href="process.html">Process</a>
+      <a href="photosamples.html">Photography Samples</a>
+      <a href="resume.html">Resume</a>
+      <a href="reflection.html">Reflection</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-cat">Category</div>
+    <h1 class="page-title">Print</h1>
+    <p class="page-desc">Layout and production design for physical deliverables — set up with bleed, crop marks, and correct color profiles for real-world printing.</p>
+  </div>
+
+  <div class="split-layout">
+
+    <div class="project-grid">
+
+      <!-- Perry Trifold -->
+    <div class="card">
+  <img class="strip-hero" id="tf-hero" src="project images/LY_Tristen_PerryTrifold_page-0002.jpg" alt="outer trifold covers">
+  <div class="strip-thumbs">
+    <img src="project images/LY_Tristen_PerryTrifold_page-0002.jpg"   onclick="swapPanel('tf-hero',this)" class="thumb-active">
+    <img src="project images/LY_Tristen_PerryTrifold_page-0001.jpg" onclick="swapPanel('tf-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Perry High School Trifold</div>
+    <div class="card-meta">Informational Trifold · Adobe InDesign</div>
+  </div>
+</div>
+
+      <!-- Lunar New Year Card -->
+    <div class="card">
+  <img class="strip-hero" id="gc-hero" src="project images/Ly-Tristen-Lunarcard-01.jpg" alt="Card Font and Back">
+  <div class="strip-thumbs">
+    <img src="project images/Ly-Tristen-Lunarcard-01.jpg"   onclick="swapPanel('gc-hero',this)" class="thumb-active">
+    <img src="project images/Ly-Tristen-Lunarcard-02.jpg" onclick="swapPanel('gc-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Lunar New Year Card</div>
+    <div class="card-meta">Holiday Card · Adobe Illustrator</div>
+  </div>
+</div>
+
+      <!-- Sublimation Mug -->
+    <div class="card">
+  <img class="strip-hero" id="sm-hero" src="project images/20260505_081411_web.jpg" alt="outer trifold covers">
+  <div class="strip-thumbs">
+    <img src="project images/20260505_081411_web.jpg"   onclick="swapPanel('sm-hero',this)" class="thumb-active">
+    <img src="project images/20260505_081415_web.jpg" onclick="swapPanel('sm-hero',this)">
+  </div>
+  <div class="card-body">
+    <div class="card-title">Sublimation Mug</div>
+    <div class="card-meta">Real Merch · Adobe Illustrator</div>
+  </div>
+</div>
+
+    <aside>
+      <div class="sidebar-card">
+        <div class="sidebar-title">Print specs knowledge</div>
+        <div class="skill-row"><span>Bleed &amp; crop marks</span><span class="skill-tag">Production</span></div>
+        <div class="skill-row"><span>CMYK color mode</span><span class="skill-tag">Color</span></div>
+        <div class="skill-row"><span>Tri-fold panel layout</span><span class="skill-tag">InDesign</span></div>
+        <div class="skill-row"><span>Sublimation wrap dims</span><span class="skill-tag">Merch</span></div>
+        <div class="skill-row"><span>Safe zone margins</span><span class="skill-tag">Production</span></div>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<script>
+  /* ── Strip panel swap ── */
+  function swapPanel(heroId, thumb) {
+    document.getElementById(heroId).src = thumb.src;
+    thumb.closest('.strip-thumbs')
+         .querySelectorAll('img')
+         .forEach(t => t.classList.remove('thumb-active'));
+    thumb.classList.add('thumb-active');
+  }
+</script>
+
+</body>
+</html>
